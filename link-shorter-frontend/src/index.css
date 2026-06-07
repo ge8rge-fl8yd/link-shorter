@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden; /* Убирает отвратительный общий скроллбар */
+  background-color: #000000; /* Или твой основной цвет фона */
+}
+
+/* Класс для контейнера ACTIVE_SLUGS_LIST */
+.slugs-list-container {
+  max-height: 400px; /* Настрой высоту под макет */
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
+/* Красивый кастомный скроллбар под стиль твоего неона */
+.slugs-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.slugs-list-container::-webkit-scrollbar-track {
+  background: #0d0d0d;
+  border-radius: 4px;
+}
+
+.slugs-list-container::-webkit-scrollbar-thumb {
+  background: #15803d; /* Приглушенный зеленый в цвет твоих кликов */
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.slugs-list-container::-webkit-scrollbar-thumb:hover {
+  background: #22c55e; /* Яркий неон при наведении */
+}
+
+:root {
+  --bg-main: #000000;
+  --bg-panel: #09090b;
+  --accent-lime: #00ff66;
+  --accent-red: #ff3333;
+  --text-primary: #ffffff;
+  --text-muted: #52525b;
+  --border-flat: #27272a;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  /* Единственный очень слабый градиент, чтобы экран не выглядел мёртвым */
+  background-image: radial-gradient(circle at 50% 50%, #08120a 0%, #000000 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Строгая плоская панель без теней */
+.flat-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-flat);
+  border-radius: 0px; /* Полностью квадратный high-tech стиль */
+}
+
+/* Основные кнопки — чисто белые с чёрным текстом */
+.btn-white {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 0px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-white:hover {
+  background: #e4e4e7;
+}
+
+/* Плоский инпут */
+.flat-input {
+  background: #000000;
+  border: 1px solid var(--border-flat);
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 0px;
+  outline: none;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.flat-input:focus {
+  border-color: var(--accent-lime);
+}
+
+/* Овальная пилюля кликов строго как на скрине */
+.clicks-badge {
+  background: #05160c; /* Очень тёмно-зелёный */
+  color: var(--accent-lime);
+  border: 1px solid #0c2d18;
+  padding: 4px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-red {
+  background-color: #e53e3e; /* Плотный красный */
+  color: #ffffff;
+  font-family: monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px; /* Закругление со скрина крупным планом */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-red:hover {
+  background-color: #c53030;
+}
+
+.btn-red:active {
+  transform: scale(0.98);
+}
+
+.btn-white {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 0px; /* Четкие строгие углы */
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-white:hover {
+  background-color: #f3f4f6;
+  opacity: 0.95;
+}
+
+.delete-card-container {
+  max-width: 480px;
+  margin: 100px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: monospace;
+  background-color: #000000;
+}
+
+/* Красный брутальный заголовок */
+.delete-title {
+  color: #ef4444; /* Яркий красный */
+  font-size: 1.75rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Описание операции */
+.delete-description {
+  color: #6b7280; /* Приглушенный серый */
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+
+/* Строгая широкая красная кнопка */
+.btn-red-brutal {
+  background-color: #ef4444;
+  color: #ffffff;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 14px 0;
+  width: 100%;
+  border: none;
+  border-radius: 0px; /* Никаких скруглений */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-red-brutal:hover {
+  background-color: #dc2626;
+}
+
+/* Контейнер для OTP инпутов */
+.otp-inputs-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+/* Стильные темные ячейки кода */
+.otp-custom-input {
+  width: 54px;
+  height: 54px;
+  background-color: #0a0a0a;
+  border: 2px solid #262626;
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0px; /* Убираем скругление полностью */
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Подсветка при фокусе на удалении — агрессивный красный */
+.otp-custom-input:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+}
+.btn-delete-link-outline {
+  background: transparent !important;
+  border: 1px solid #ef4444 !important; /* Тот самый красный бордер */
+  color: #ef4444 !important;
+  font-family: monospace !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  padding: 4px 10px !important; /* Компактный размер для строки */
+  border-radius: 0px !important; /* Четкие брутальные углы */
+  cursor: pointer !important;
+  transition: none !important;
+}
+
+/* При наведении полная статика — цвет и бордер не меняются */
+.btn-delete-link-outline:hover {
+  background: transparent !important;
+  color: #ef4444 !important;
+  border-color: #ef4444 !important;
+}
+/* Контейнеры страниц сброса */
+.reset-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.reset-panel {
+  background: #000000;
+  border: 1px solid #1a1a1a;
+  padding: 40px;
+  width: 400px;
+  box-sizing: border-box;
+}
+
+/* Заголовки (весь синий заменен на белый) */
+.reset-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #ffffff; 
+  font-family: monospace;
+}
+
+.reset-description {
+  color: var(--text-muted, #6b7280);
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Поля ввода с зелёным бордером при фокусе */
+.reset-input {
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: 1px solid #333;
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 0 12px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.reset-input:focus {
+  border-color: #22c55e !important; /* Зелёный бордер при нажатии */
+}
+
+/* Кнопка: белый фон, чёрный текст */
+.btn-reset-white {
+  width: 100%;
+  padding: 14px;
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0px;
+  margin-top: 8px;
+}
+
+.btn-reset-white:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reset-back-link {
+  display: inline-block;
+  color: var(--text-muted, #6b7280);
+  font-family: monospace;
+  font-size: 11px;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.links-scroll-container {
+  overflow-y: auto;
+  padding-right: 4px; /* Отступ, чтобы скроллбар не лип к контенту */
+}
+
+/* 1. Ширина скроллбара */
+.links-scroll-container::-webkit-scrollbar {
+  width: 4px; /* Делаем его тонким и аккуратным */
+}
+
+/* 2. Дорожка, по которой двигается ползунок (трек) */
+.links-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03); /* Почти прозрачный темный фон */
+  border-radius: 2px;
+}
+
+/* 3. Сам ползунок (бегунок) */
+.links-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--text-muted, #6b7280); /* В цвет приглушенного текста */
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+
+/* 4. Эффект при наведении на ползунок */
+.links-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime, #ffffff); /* Загорается белым или неоновым при наведении */
+}

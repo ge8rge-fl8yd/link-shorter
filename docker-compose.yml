@@ -1,0 +1,63 @@
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: link_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_HOST_AUTH_METHOD: md5
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis_cache:
+    image: redis:7-alpine
+    container_name: link_redis
+    restart: always
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - redis_data:/data
+
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: link_backend
+    restart: always
+    ports:
+      - "${PORT}:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+      redis_cache:
+        condition: service_started
+
+  frontend:
+    build:
+      context: ./link-shorter-frontend
+      dockerfile: Dockerfile
+    container_name: link_frontend
+    restart: always
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    volumes:
+      - ./link-shorter-frontend:/app
+      - /app/node_modules 
+    depends_on:
+      - backend
+volumes:
+  postgres_data:
+  redis_data:
