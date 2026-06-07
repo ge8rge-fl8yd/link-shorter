@@ -5,7 +5,7 @@
 ![React](https://img.shields.io/badge/React-v18+-61DAFB?logo=react&logoColor=black)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
 
-Just good link shorter
+Just good link shortener
 
 ---
 
